@@ -1,11 +1,22 @@
-import cornerDotTypes from "../../../constants/cornerDotTypes";
-import { CornerDotType, RotateFigureArgsCanvas, BasicFigureDrawArgsCanvas, DrawArgsCanvas } from "../../../types";
+import cornerDotTypes from '../../../constants/cornerDotTypes';
+import {
+  BasicFigureDrawArgsCanvas,
+  CornerDotType,
+  DrawArgsCanvas,
+  RotateFigureArgsCanvas,
+} from '../../../types';
 
 export default class QRCornerDot {
   _context: CanvasRenderingContext2D;
   _type: CornerDotType;
 
-  constructor({ context, type }: { context: CanvasRenderingContext2D; type: CornerDotType }) {
+  constructor({
+    context,
+    type,
+  }: {
+    context: CanvasRenderingContext2D;
+    type: CornerDotType;
+  }) {
     this._context = context;
     this._type = type;
   }
@@ -27,7 +38,14 @@ export default class QRCornerDot {
     drawFunction.call(this, { x, y, size, context, rotation });
   }
 
-  _rotateFigure({ x, y, size, context, rotation = 0, draw }: RotateFigureArgsCanvas): void {
+  _rotateFigure({
+    x,
+    y,
+    size,
+    context,
+    rotation = 0,
+    draw,
+  }: RotateFigureArgsCanvas): void {
     const cx = x + size / 2;
     const cy = y + size / 2;
 
@@ -46,7 +64,7 @@ export default class QRCornerDot {
       ...args,
       draw: () => {
         context.arc(0, 0, size / 2, 0, Math.PI * 2);
-      }
+      },
     });
   }
 
@@ -57,7 +75,7 @@ export default class QRCornerDot {
       ...args,
       draw: () => {
         context.rect(-size / 2, -size / 2, size, size);
-      }
+      },
     });
   }
 

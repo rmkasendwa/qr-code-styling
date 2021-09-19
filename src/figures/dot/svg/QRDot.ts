@@ -1,5 +1,11 @@
-import dotTypes from "../../../constants/dotTypes";
-import { DotType, GetNeighbor, DrawArgs, BasicFigureDrawArgs, RotateFigureArgs } from "../../../types";
+import dotTypes from '../../../constants/dotTypes';
+import {
+  BasicFigureDrawArgs,
+  DotType,
+  DrawArgs,
+  GetNeighbor,
+  RotateFigureArgs,
+} from '../../../types';
 
 export default class QRDot {
   _element?: SVGElement;
@@ -44,7 +50,10 @@ export default class QRDot {
     const cy = y + size / 2;
 
     draw();
-    this._element?.setAttribute("transform", `rotate(${(180 * rotation) / Math.PI},${cx},${cy})`);
+    this._element?.setAttribute(
+      'transform',
+      `rotate(${(180 * rotation) / Math.PI},${cx},${cy})`
+    );
   }
 
   _basicDot(args: BasicFigureDrawArgs): void {
@@ -53,11 +62,14 @@ export default class QRDot {
     this._rotateFigure({
       ...args,
       draw: () => {
-        this._element = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        this._element.setAttribute("cx", String(x + size / 2));
-        this._element.setAttribute("cy", String(y + size / 2));
-        this._element.setAttribute("r", String(size / 2));
-      }
+        this._element = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'circle'
+        );
+        this._element.setAttribute('cx', String(x + size / 2));
+        this._element.setAttribute('cy', String(y + size / 2));
+        this._element.setAttribute('r', String(size / 2));
+      },
     });
   }
 
@@ -67,12 +79,15 @@ export default class QRDot {
     this._rotateFigure({
       ...args,
       draw: () => {
-        this._element = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        this._element.setAttribute("x", String(x));
-        this._element.setAttribute("y", String(y));
-        this._element.setAttribute("width", String(size));
-        this._element.setAttribute("height", String(size));
-      }
+        this._element = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'rect'
+        );
+        this._element.setAttribute('x', String(x));
+        this._element.setAttribute('y', String(y));
+        this._element.setAttribute('width', String(size));
+        this._element.setAttribute('height', String(size));
+      },
     });
   }
 
@@ -83,15 +98,18 @@ export default class QRDot {
     this._rotateFigure({
       ...args,
       draw: () => {
-        this._element = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        this._element = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'path'
+        );
         this._element.setAttribute(
-          "d",
+          'd',
           `M ${x} ${y}` + //go to top left position
             `v ${size}` + //draw line to left bottom corner
             `h ${size / 2}` + //draw line to left bottom corner + half of size right
             `a ${size / 2} ${size / 2}, 0, 0, 0, 0 ${-size}` // draw rounded corner
         );
-      }
+      },
     });
   }
 
@@ -102,16 +120,19 @@ export default class QRDot {
     this._rotateFigure({
       ...args,
       draw: () => {
-        this._element = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        this._element = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'path'
+        );
         this._element.setAttribute(
-          "d",
+          'd',
           `M ${x} ${y}` + //go to top left position
             `v ${size}` + //draw line to left bottom corner
             `h ${size}` + //draw line to right bottom corner
             `v ${-size / 2}` + //draw line to right bottom corner + half of size top
             `a ${size / 2} ${size / 2}, 0, 0, 0, ${-size / 2} ${-size / 2}` // draw rounded corner
         );
-      }
+      },
     });
   }
 
@@ -122,15 +143,18 @@ export default class QRDot {
     this._rotateFigure({
       ...args,
       draw: () => {
-        this._element = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        this._element = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'path'
+        );
         this._element.setAttribute(
-          "d",
+          'd',
           `M ${x} ${y}` + //go to top left position
             `v ${size}` + //draw line to left bottom corner
             `h ${size}` + //draw line to right bottom corner
             `a ${size} ${size}, 0, 0, 0, ${-size} ${-size}` // draw rounded top right corner
         );
-      }
+      },
     });
   }
 
@@ -141,9 +165,12 @@ export default class QRDot {
     this._rotateFigure({
       ...args,
       draw: () => {
-        this._element = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        this._element = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'path'
+        );
         this._element.setAttribute(
-          "d",
+          'd',
           `M ${x} ${y}` + //go to left top position
             `v ${size / 2}` + //draw line to left top corner + half of size bottom
             `a ${size / 2} ${size / 2}, 0, 0, 0, ${size / 2} ${size / 2}` + // draw rounded left bottom corner
@@ -151,7 +178,7 @@ export default class QRDot {
             `v ${-size / 2}` + //draw line to right bottom corner + half of size top
             `a ${size / 2} ${size / 2}, 0, 0, 0, ${-size / 2} ${-size / 2}` // draw rounded right top corner
         );
-      }
+      },
     });
   }
 
@@ -169,14 +196,19 @@ export default class QRDot {
     const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
     const bottomNeighbor = getNeighbor ? +getNeighbor(0, 1) : 0;
 
-    const neighborsCount = leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
+    const neighborsCount =
+      leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
 
     if (neighborsCount === 0) {
       this._basicDot({ x, y, size, rotation: 0 });
       return;
     }
 
-    if (neighborsCount > 2 || (leftNeighbor && rightNeighbor) || (topNeighbor && bottomNeighbor)) {
+    if (
+      neighborsCount > 2 ||
+      (leftNeighbor && rightNeighbor) ||
+      (topNeighbor && bottomNeighbor)
+    ) {
       this._basicSquare({ x, y, size, rotation: 0 });
       return;
     }
@@ -218,14 +250,19 @@ export default class QRDot {
     const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
     const bottomNeighbor = getNeighbor ? +getNeighbor(0, 1) : 0;
 
-    const neighborsCount = leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
+    const neighborsCount =
+      leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
 
     if (neighborsCount === 0) {
       this._basicDot({ x, y, size, rotation: 0 });
       return;
     }
 
-    if (neighborsCount > 2 || (leftNeighbor && rightNeighbor) || (topNeighbor && bottomNeighbor)) {
+    if (
+      neighborsCount > 2 ||
+      (leftNeighbor && rightNeighbor) ||
+      (topNeighbor && bottomNeighbor)
+    ) {
       this._basicSquare({ x, y, size, rotation: 0 });
       return;
     }
@@ -267,7 +304,8 @@ export default class QRDot {
     const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
     const bottomNeighbor = getNeighbor ? +getNeighbor(0, 1) : 0;
 
-    const neighborsCount = leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
+    const neighborsCount =
+      leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
 
     if (neighborsCount === 0) {
       this._basicCornersRounded({ x, y, size, rotation: Math.PI / 2 });
@@ -293,7 +331,8 @@ export default class QRDot {
     const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
     const bottomNeighbor = getNeighbor ? +getNeighbor(0, 1) : 0;
 
-    const neighborsCount = leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
+    const neighborsCount =
+      leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
 
     if (neighborsCount === 0) {
       this._basicCornersRounded({ x, y, size, rotation: Math.PI / 2 });

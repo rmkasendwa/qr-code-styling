@@ -1,4 +1,4 @@
-const { defaults: tsjPreset } = require("ts-jest/presets");
+const { defaults: tsjPreset } = require('ts-jest/presets');
 
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
@@ -23,10 +23,10 @@ module.exports = {
   collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  collectCoverageFrom: ["src/**/*.ts", "!src/**/*.d.ts"],
+  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.d.ts'],
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -71,7 +71,7 @@ module.exports = {
   // ],
 
   // An array of file extensions your modules use
-  moduleFileExtensions: ["ts", "js", "json"],
+  moduleFileExtensions: ['ts', 'js', 'json'],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
   // moduleNameMapper: {},
@@ -86,7 +86,7 @@ module.exports = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  preset: "ts-jest",
+  preset: 'ts-jest',
 
   // Run tests from one or more projects
   // projects: null,
@@ -110,7 +110,7 @@ module.exports = {
   // rootDir: null,
 
   // A list of paths to directories that Jest should use to search for files in
-  roots: ["src"],
+  roots: ['src'],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
@@ -125,11 +125,11 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "jest-environment-jsdom-fifteen",
+  testEnvironment: 'jest-environment-jsdom-fifteen',
 
   // Options that will be passed to the testEnvironment
   testEnvironmentOptions: {
-    resources: "usable"
+    resources: 'usable',
   },
 
   // Adds a location field to test results
@@ -163,8 +163,8 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    "^.+\\.(js|ts)$": "ts-jest"
-  }
+    '^.+\\.(js|ts)$': 'ts-jest',
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [

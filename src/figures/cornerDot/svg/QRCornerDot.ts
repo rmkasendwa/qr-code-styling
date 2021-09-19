@@ -1,5 +1,10 @@
-import cornerDotTypes from "../../../constants/cornerDotTypes";
-import { CornerDotType, RotateFigureArgs, BasicFigureDrawArgs, DrawArgs } from "../../../types";
+import cornerDotTypes from '../../../constants/cornerDotTypes';
+import {
+  BasicFigureDrawArgs,
+  CornerDotType,
+  DrawArgs,
+  RotateFigureArgs,
+} from '../../../types';
 
 export default class QRCornerDot {
   _element?: SVGElement;
@@ -32,7 +37,10 @@ export default class QRCornerDot {
     const cy = y + size / 2;
 
     draw();
-    this._element?.setAttribute("transform", `rotate(${(180 * rotation) / Math.PI},${cx},${cy})`);
+    this._element?.setAttribute(
+      'transform',
+      `rotate(${(180 * rotation) / Math.PI},${cx},${cy})`
+    );
   }
 
   _basicDot(args: BasicFigureDrawArgs): void {
@@ -41,11 +49,14 @@ export default class QRCornerDot {
     this._rotateFigure({
       ...args,
       draw: () => {
-        this._element = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        this._element.setAttribute("cx", String(x + size / 2));
-        this._element.setAttribute("cy", String(y + size / 2));
-        this._element.setAttribute("r", String(size / 2));
-      }
+        this._element = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'circle'
+        );
+        this._element.setAttribute('cx', String(x + size / 2));
+        this._element.setAttribute('cy', String(y + size / 2));
+        this._element.setAttribute('r', String(size / 2));
+      },
     });
   }
 
@@ -55,12 +66,15 @@ export default class QRCornerDot {
     this._rotateFigure({
       ...args,
       draw: () => {
-        this._element = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        this._element.setAttribute("x", String(x));
-        this._element.setAttribute("y", String(y));
-        this._element.setAttribute("width", String(size));
-        this._element.setAttribute("height", String(size));
-      }
+        this._element = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'rect'
+        );
+        this._element.setAttribute('x', String(x));
+        this._element.setAttribute('y', String(y));
+        this._element.setAttribute('width', String(size));
+        this._element.setAttribute('height', String(size));
+      },
     });
   }
 

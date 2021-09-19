@@ -1,11 +1,22 @@
-import cornerSquareTypes from "../../../constants/cornerSquareTypes";
-import { CornerSquareType, RotateFigureArgsCanvas, BasicFigureDrawArgsCanvas, DrawArgsCanvas } from "../../../types";
+import cornerSquareTypes from '../../../constants/cornerSquareTypes';
+import {
+  BasicFigureDrawArgsCanvas,
+  CornerSquareType,
+  DrawArgsCanvas,
+  RotateFigureArgsCanvas,
+} from '../../../types';
 
 export default class QRCornerSquare {
   _context: CanvasRenderingContext2D;
   _type: CornerSquareType;
 
-  constructor({ context, type }: { context: CanvasRenderingContext2D; type: CornerSquareType }) {
+  constructor({
+    context,
+    type,
+  }: {
+    context: CanvasRenderingContext2D;
+    type: CornerSquareType;
+  }) {
     this._context = context;
     this._type = type;
   }
@@ -30,7 +41,14 @@ export default class QRCornerSquare {
     drawFunction.call(this, { x, y, size, context, rotation });
   }
 
-  _rotateFigure({ x, y, size, context, rotation = 0, draw }: RotateFigureArgsCanvas): void {
+  _rotateFigure({
+    x,
+    y,
+    size,
+    context,
+    rotation = 0,
+    draw,
+  }: RotateFigureArgsCanvas): void {
     const cx = x + size / 2;
     const cy = y + size / 2;
 
@@ -51,7 +69,7 @@ export default class QRCornerSquare {
       draw: () => {
         context.arc(0, 0, size / 2, 0, Math.PI * 2);
         context.arc(0, 0, size / 2 - dotSize, 0, Math.PI * 2);
-      }
+      },
     });
   }
 
@@ -63,8 +81,13 @@ export default class QRCornerSquare {
       ...args,
       draw: () => {
         context.rect(-size / 2, -size / 2, size, size);
-        context.rect(-size / 2 + dotSize, -size / 2 + dotSize, size - 2 * dotSize, size - 2 * dotSize);
-      }
+        context.rect(
+          -size / 2 + dotSize,
+          -size / 2 + dotSize,
+          size - 2 * dotSize,
+          size - 2 * dotSize
+        );
+      },
     });
   }
 
@@ -92,7 +115,7 @@ export default class QRCornerSquare {
         context.lineTo(-dotSize, 2.5 * dotSize);
         context.arc(-dotSize, dotSize, 1.5 * dotSize, Math.PI / 2, Math.PI);
         context.lineTo(-2.5 * dotSize, -dotSize);
-      }
+      },
     });
   }
 

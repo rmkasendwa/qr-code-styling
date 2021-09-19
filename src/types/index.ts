@@ -3,12 +3,18 @@ export interface UnknownObject {
   [key: string]: any;
 }
 
-export type DotType = "dots" | "rounded" | "classy" | "classy-rounded" | "square" | "extra-rounded";
-export type CornerDotType = "dot" | "square";
-export type CornerSquareType = "dot" | "square" | "extra-rounded";
-export type Extension = "svg" | "png" | "jpeg" | "webp";
-export type GradientType = "radial" | "linear";
-export type DrawType = "canvas" | "svg";
+export type DotType =
+  | 'dots'
+  | 'rounded'
+  | 'classy'
+  | 'classy-rounded'
+  | 'square'
+  | 'extra-rounded';
+export type CornerDotType = 'dot' | 'square';
+export type CornerSquareType = 'dot' | 'square' | 'extra-rounded';
+export type Extension = 'svg' | 'png' | 'jpeg' | 'webp';
+export type GradientType = 'radial' | 'linear';
+export type DrawType = 'canvas' | 'svg';
 
 export type Gradient = {
   type: GradientType;
@@ -82,8 +88,8 @@ export type TypeNumber =
   | 39
   | 40;
 
-export type ErrorCorrectionLevel = "L" | "M" | "Q" | "H";
-export type Mode = "Numeric" | "Alphanumeric" | "Byte" | "Kanji";
+export type ErrorCorrectionLevel = 'L' | 'M' | 'Q' | 'H';
+export type Mode = 'Numeric' | 'Alphanumeric' | 'Byte' | 'Kanji';
 export interface QRCode {
   addData(data: string, mode?: Mode): void;
   make(): void;
@@ -91,7 +97,11 @@ export interface QRCode {
   isDark(row: number, col: number): boolean;
   createImgTag(cellSize?: number, margin?: number): string;
   createSvgTag(cellSize?: number, margin?: number): string;
-  createSvgTag(opts?: { cellSize?: number; margin?: number; scalable?: boolean }): string;
+  createSvgTag(opts?: {
+    cellSize?: number;
+    margin?: number;
+    scalable?: boolean;
+  }): string;
   createDataURL(cellSize?: number, margin?: number): string;
   createTableTag(cellSize?: number, margin?: number): string;
   createASCII(cellSize?: number, margin?: number): string;

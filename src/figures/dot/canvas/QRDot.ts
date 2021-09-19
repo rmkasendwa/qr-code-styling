@@ -1,17 +1,23 @@
-import dotTypes from "../../../constants/dotTypes";
+import dotTypes from '../../../constants/dotTypes';
 import {
+  BasicFigureDrawArgsCanvas,
   DotType,
+  DrawArgsCanvas,
   GetNeighbor,
   RotateFigureArgsCanvas,
-  BasicFigureDrawArgsCanvas,
-  DrawArgsCanvas
-} from "../../../types";
+} from '../../../types';
 
 export default class QRDot {
   _context: CanvasRenderingContext2D;
   _type: DotType;
 
-  constructor({ context, type }: { context: CanvasRenderingContext2D; type: DotType }) {
+  constructor({
+    context,
+    type,
+  }: {
+    context: CanvasRenderingContext2D;
+    type: DotType;
+  }) {
     this._context = context;
     this._type = type;
   }
@@ -45,7 +51,14 @@ export default class QRDot {
     drawFunction.call(this, { x, y, size, context, getNeighbor });
   }
 
-  _rotateFigure({ x, y, size, context, rotation = 0, draw }: RotateFigureArgsCanvas): void {
+  _rotateFigure({
+    x,
+    y,
+    size,
+    context,
+    rotation = 0,
+    draw,
+  }: RotateFigureArgsCanvas): void {
     const cx = x + size / 2;
     const cy = y + size / 2;
 
@@ -64,7 +77,7 @@ export default class QRDot {
       ...args,
       draw: () => {
         context.arc(0, 0, size / 2, 0, Math.PI * 2);
-      }
+      },
     });
   }
 
@@ -75,7 +88,7 @@ export default class QRDot {
       ...args,
       draw: () => {
         context.rect(-size / 2, -size / 2, size, size);
-      }
+      },
     });
   }
 
@@ -90,7 +103,7 @@ export default class QRDot {
         context.lineTo(-size / 2, size / 2);
         context.lineTo(-size / 2, -size / 2);
         context.lineTo(0, -size / 2);
-      }
+      },
     });
   }
 
@@ -106,7 +119,7 @@ export default class QRDot {
         context.lineTo(-size / 2, size / 2);
         context.lineTo(-size / 2, -size / 2);
         context.lineTo(0, -size / 2);
-      }
+      },
     });
   }
 
@@ -120,7 +133,7 @@ export default class QRDot {
         context.arc(-size / 2, size / 2, size, -Math.PI / 2, 0);
         context.lineTo(-size / 2, size / 2);
         context.lineTo(-size / 2, -size / 2);
-      }
+      },
     });
   }
 
@@ -136,7 +149,7 @@ export default class QRDot {
         context.arc(0, 0, size / 2, Math.PI / 2, Math.PI);
         context.lineTo(-size / 2, -size / 2);
         context.lineTo(0, -size / 2);
-      }
+      },
     });
   }
 
@@ -148,7 +161,7 @@ export default class QRDot {
       draw: () => {
         context.arc(-size / 2, size / 2, size, -Math.PI / 2, 0);
         context.arc(size / 2, -size / 2, size, Math.PI / 2, Math.PI);
-      }
+      },
     });
   }
 
@@ -166,14 +179,19 @@ export default class QRDot {
     const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
     const bottomNeighbor = getNeighbor ? +getNeighbor(0, 1) : 0;
 
-    const neighborsCount = leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
+    const neighborsCount =
+      leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
 
     if (neighborsCount === 0) {
       this._basicDot({ x, y, size, context, rotation: 0 });
       return;
     }
 
-    if (neighborsCount > 2 || (leftNeighbor && rightNeighbor) || (topNeighbor && bottomNeighbor)) {
+    if (
+      neighborsCount > 2 ||
+      (leftNeighbor && rightNeighbor) ||
+      (topNeighbor && bottomNeighbor)
+    ) {
       this._basicSquare({ x, y, size, context, rotation: 0 });
       return;
     }
@@ -209,20 +227,31 @@ export default class QRDot {
     }
   }
 
-  _drawExtraRounded({ x, y, size, context, getNeighbor }: DrawArgsCanvas): void {
+  _drawExtraRounded({
+    x,
+    y,
+    size,
+    context,
+    getNeighbor,
+  }: DrawArgsCanvas): void {
     const leftNeighbor = getNeighbor ? +getNeighbor(-1, 0) : 0;
     const rightNeighbor = getNeighbor ? +getNeighbor(1, 0) : 0;
     const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
     const bottomNeighbor = getNeighbor ? +getNeighbor(0, 1) : 0;
 
-    const neighborsCount = leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
+    const neighborsCount =
+      leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
 
     if (neighborsCount === 0) {
       this._basicDot({ x, y, size, context, rotation: 0 });
       return;
     }
 
-    if (neighborsCount > 2 || (leftNeighbor && rightNeighbor) || (topNeighbor && bottomNeighbor)) {
+    if (
+      neighborsCount > 2 ||
+      (leftNeighbor && rightNeighbor) ||
+      (topNeighbor && bottomNeighbor)
+    ) {
       this._basicSquare({ x, y, size, context, rotation: 0 });
       return;
     }
@@ -264,7 +293,8 @@ export default class QRDot {
     const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
     const bottomNeighbor = getNeighbor ? +getNeighbor(0, 1) : 0;
 
-    const neighborsCount = leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
+    const neighborsCount =
+      leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
 
     if (neighborsCount === 0) {
       this._basicCornersRounded({ x, y, size, context, rotation: Math.PI / 2 });
@@ -284,13 +314,20 @@ export default class QRDot {
     this._basicSquare({ x, y, size, context, rotation: 0 });
   }
 
-  _drawClassyRounded({ x, y, size, context, getNeighbor }: DrawArgsCanvas): void {
+  _drawClassyRounded({
+    x,
+    y,
+    size,
+    context,
+    getNeighbor,
+  }: DrawArgsCanvas): void {
     const leftNeighbor = getNeighbor ? +getNeighbor(-1, 0) : 0;
     const rightNeighbor = getNeighbor ? +getNeighbor(1, 0) : 0;
     const topNeighbor = getNeighbor ? +getNeighbor(0, -1) : 0;
     const bottomNeighbor = getNeighbor ? +getNeighbor(0, 1) : 0;
 
-    const neighborsCount = leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
+    const neighborsCount =
+      leftNeighbor + rightNeighbor + topNeighbor + bottomNeighbor;
 
     if (neighborsCount === 0) {
       this._basicCornersRounded({ x, y, size, context, rotation: Math.PI / 2 });
@@ -298,12 +335,24 @@ export default class QRDot {
     }
 
     if (!leftNeighbor && !topNeighbor) {
-      this._basicCornerExtraRounded({ x, y, size, context, rotation: -Math.PI / 2 });
+      this._basicCornerExtraRounded({
+        x,
+        y,
+        size,
+        context,
+        rotation: -Math.PI / 2,
+      });
       return;
     }
 
     if (!rightNeighbor && !bottomNeighbor) {
-      this._basicCornerExtraRounded({ x, y, size, context, rotation: Math.PI / 2 });
+      this._basicCornerExtraRounded({
+        x,
+        y,
+        size,
+        context,
+        rotation: Math.PI / 2,
+      });
       return;
     }
 

@@ -18,17 +18,22 @@ export default function calculateImageSize({
   originalWidth,
   maxHiddenDots,
   maxHiddenAxisDots,
-  dotSize
+  dotSize,
 }: ImageSizeOptions): ImageSizeResult {
   const hideDots = { x: 0, y: 0 };
   const imageSize = { x: 0, y: 0 };
 
-  if (originalHeight <= 0 || originalWidth <= 0 || maxHiddenDots <= 0 || dotSize <= 0) {
+  if (
+    originalHeight <= 0 ||
+    originalWidth <= 0 ||
+    maxHiddenDots <= 0 ||
+    dotSize <= 0
+  ) {
     return {
       height: 0,
       width: 0,
       hideYDots: 0,
-      hideXDots: 0
+      hideXDots: 0,
     };
   }
 
@@ -39,7 +44,8 @@ export default function calculateImageSize({
   //The count of hidden dot's can't be less than 1
   if (hideDots.x <= 0) hideDots.x = 1;
   //Check the limit of the maximum allowed axis hidden dots
-  if (maxHiddenAxisDots && maxHiddenAxisDots < hideDots.x) hideDots.x = maxHiddenAxisDots;
+  if (maxHiddenAxisDots && maxHiddenAxisDots < hideDots.x)
+    hideDots.x = maxHiddenAxisDots;
   //The count of dots should be odd
   if (hideDots.x % 2 === 0) hideDots.x--;
   imageSize.x = hideDots.x * dotSize;
@@ -49,7 +55,10 @@ export default function calculateImageSize({
   hideDots.y = 1 + 2 * Math.ceil((hideDots.x * k - 1) / 2);
   imageSize.y = Math.round(imageSize.x * k);
   //If the result dots count is bigger than max - then decrease size and calculate again
-  if (hideDots.y * hideDots.x > maxHiddenDots || (maxHiddenAxisDots && maxHiddenAxisDots < hideDots.y)) {
+  if (
+    hideDots.y * hideDots.x > maxHiddenDots ||
+    (maxHiddenAxisDots && maxHiddenAxisDots < hideDots.y)
+  ) {
     if (maxHiddenAxisDots && maxHiddenAxisDots < hideDots.y) {
       hideDots.y = maxHiddenAxisDots;
       if (hideDots.y % 2 === 0) hideDots.x--;
@@ -65,6 +74,6 @@ export default function calculateImageSize({
     height: imageSize.y,
     width: imageSize.x,
     hideYDots: hideDots.y,
-    hideXDots: hideDots.x
+    hideXDots: hideDots.x,
   };
 }

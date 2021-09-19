@@ -1,7 +1,15 @@
-import qrTypes from "../constants/qrTypes";
-import drawTypes from "../constants/drawTypes";
-import errorCorrectionLevels from "../constants/errorCorrectionLevels";
-import { DotType, Options, TypeNumber, ErrorCorrectionLevel, Mode, DrawType, Gradient } from "../types";
+import drawTypes from '../constants/drawTypes';
+import errorCorrectionLevels from '../constants/errorCorrectionLevels';
+import qrTypes from '../constants/qrTypes';
+import {
+  DotType,
+  DrawType,
+  ErrorCorrectionLevel,
+  Gradient,
+  Mode,
+  Options,
+  TypeNumber,
+} from '../types';
 
 export interface RequiredOptions extends Options {
   type: DrawType;
@@ -35,26 +43,26 @@ const defaultOptions: RequiredOptions = {
   type: drawTypes.canvas,
   width: 300,
   height: 300,
-  data: "",
+  data: '',
   margin: 0,
   qrOptions: {
     typeNumber: qrTypes[0],
     mode: undefined,
-    errorCorrectionLevel: errorCorrectionLevels.Q
+    errorCorrectionLevel: errorCorrectionLevels.Q,
   },
   imageOptions: {
     hideBackgroundDots: true,
     imageSize: 0.4,
     crossOrigin: undefined,
-    margin: 0
+    margin: 0,
   },
   dotsOptions: {
-    type: "square",
-    color: "#000"
+    type: 'square',
+    color: '#000',
   },
   backgroundOptions: {
-    color: "#fff"
-  }
+    color: '#fff',
+  },
 };
 
 export default defaultOptions;

@@ -1,5 +1,5 @@
-import { RequiredOptions } from "../core/QROptions";
-import { Gradient } from "../types";
+import { RequiredOptions } from '../core/QROptions';
+import { Gradient } from '../types';
 
 function sanitizeGradient(gradient: Gradient): Gradient {
   const newGradient = { ...gradient };
@@ -14,15 +14,19 @@ function sanitizeGradient(gradient: Gradient): Gradient {
     newGradient.rotation = 0;
   }
 
-  newGradient.colorStops = newGradient.colorStops.map((colorStop: { offset: number; color: string }) => ({
-    ...colorStop,
-    offset: Number(colorStop.offset)
-  }));
+  newGradient.colorStops = newGradient.colorStops.map(
+    (colorStop: { offset: number; color: string }) => ({
+      ...colorStop,
+      offset: Number(colorStop.offset),
+    })
+  );
 
   return newGradient;
 }
 
-export default function sanitizeOptions(options: RequiredOptions): RequiredOptions {
+export default function sanitizeOptions(
+  options: RequiredOptions
+): RequiredOptions {
   const newOptions = { ...options };
 
   newOptions.width = Number(newOptions.width);
@@ -32,7 +36,7 @@ export default function sanitizeOptions(options: RequiredOptions): RequiredOptio
     ...newOptions.imageOptions,
     hideBackgroundDots: Boolean(newOptions.imageOptions.hideBackgroundDots),
     imageSize: Number(newOptions.imageOptions.imageSize),
-    margin: Number(newOptions.imageOptions.margin)
+    margin: Number(newOptions.imageOptions.margin),
   };
 
   if (newOptions.margin > Math.min(newOptions.width, newOptions.height)) {
@@ -40,36 +44,44 @@ export default function sanitizeOptions(options: RequiredOptions): RequiredOptio
   }
 
   newOptions.dotsOptions = {
-    ...newOptions.dotsOptions
+    ...newOptions.dotsOptions,
   };
   if (newOptions.dotsOptions.gradient) {
-    newOptions.dotsOptions.gradient = sanitizeGradient(newOptions.dotsOptions.gradient);
+    newOptions.dotsOptions.gradient = sanitizeGradient(
+      newOptions.dotsOptions.gradient
+    );
   }
 
   if (newOptions.cornersSquareOptions) {
     newOptions.cornersSquareOptions = {
-      ...newOptions.cornersSquareOptions
+      ...newOptions.cornersSquareOptions,
     };
     if (newOptions.cornersSquareOptions.gradient) {
-      newOptions.cornersSquareOptions.gradient = sanitizeGradient(newOptions.cornersSquareOptions.gradient);
+      newOptions.cornersSquareOptions.gradient = sanitizeGradient(
+        newOptions.cornersSquareOptions.gradient
+      );
     }
   }
 
   if (newOptions.cornersDotOptions) {
     newOptions.cornersDotOptions = {
-      ...newOptions.cornersDotOptions
+      ...newOptions.cornersDotOptions,
     };
     if (newOptions.cornersDotOptions.gradient) {
-      newOptions.cornersDotOptions.gradient = sanitizeGradient(newOptions.cornersDotOptions.gradient);
+      newOptions.cornersDotOptions.gradient = sanitizeGradient(
+        newOptions.cornersDotOptions.gradient
+      );
     }
   }
 
   if (newOptions.backgroundOptions) {
     newOptions.backgroundOptions = {
-      ...newOptions.backgroundOptions
+      ...newOptions.backgroundOptions,
     };
     if (newOptions.backgroundOptions.gradient) {
-      newOptions.backgroundOptions.gradient = sanitizeGradient(newOptions.backgroundOptions.gradient);
+      newOptions.backgroundOptions.gradient = sanitizeGradient(
+        newOptions.backgroundOptions.gradient
+      );
     }
   }
 
